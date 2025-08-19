@@ -1,0 +1,52 @@
+:root{
+  --bg:#0c0f14; --card:#141a22; --muted:#b7c0cd;
+  --text:#e8eef7; --accent:#4fb477; --red:#d9534f; --yellow:#f0ad4e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg); color: var(--text);
+}
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; border-bottom:1px solid #1f2630; position:sticky; top:0; background:var(--bg); z-index:10;
+}
+.brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px}
+.logo{width:26px; height:26px}
+.nav .link{
+  background:none; border:1px solid #2a3340; color:var(--text); padding:6px 10px; border-radius:8px; margin-left:8px; cursor:pointer;
+}
+.nav .link.active{border-color:var(--accent)}
+main{max-width:1000px; margin:18px auto; padding:0 12px}
+.card{
+  background:var(--card); border:1px solid #243040; border-radius:12px; padding:16px; margin-bottom:16px;
+}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+@media (max-width:800px){.grid-3{grid-template-columns:1fr}}
+.stat-label{color:var(--muted); font-size:.9rem}
+.stat-value{font-size:1.6rem; margin-top:6px}
+.filters{display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin:12px 0}
+.filters label{display:flex; flex-direction:column; gap:6px; font-size:.9rem}
+input,select,button{
+  padding:10px 12px; border-radius:8px; border:1px solid #334254; background:#0f141a; color:var(--text);
+}
+button{cursor:pointer}
+button:hover{border-color:var(--accent)}
+#tx-form{display:grid; grid-template-columns: repeat(6, 1fr); gap:8px}
+#tx-form input[type="text"]{grid-column: span 2}
+#tx-form button{grid-column: span 6}
+@media (max-width:900px){#tx-form{grid-template-columns:1fr 1fr;}}
+.table-wrap{overflow:auto; border:1px solid #243040; border-radius:10px}
+table{width:100%; border-collapse:collapse}
+th,td{padding:10px 12px; border-bottom:1px solid #223042}
+th{position:sticky; top:0; background:#121821; text-align:left}
+.num{text-align:right}
+.badge{padding:2px 8px; border-radius:999px; border:1px solid #324357; font-size:.8rem}
+.badge.income{border-color:var(--accent)}
+.badge.expense{border-color:var(--red)}
+.row{display:flex; gap:10px; align-items:center; margin:8px 0}
+.hint{color:var(--muted); font-size:.9rem}
+.footer{max-width:1000px; margin:24px auto; padding:16px 12px; color:var(--muted)}
+.view{display:none}
+.view.active{display:block}
