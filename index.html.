@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinExpress – Personal Finance</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/icon.svg" alt="" class="logo" onerror="this.style.display='none'">
+      <span>FinExpress</span>
+    </div>
+    <nav class="nav">
+      <button class="link active" data-view="dashboard">Dashboard</button>
+      <button class="link" data-view="transactions">Transactions</button>
+      <button class="link" data-view="importexport">Import/Export</button>
+      <button class="link" data-view="about">About</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section id="view-dashboard" class="view active">
+      <div class="card grid-3">
+        <div class="stat">
+          <div class="stat-label">Total Income</div>
+          <div id="stat-income" class="stat-value">₹0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Total Expenses</div>
+          <div id="stat-expense" class="stat-value">₹0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Balance</div>
+          <div id="stat-balance" class="stat-value">₹0</div>
+        </div>
+      </div>
+
+      <div class="filters">
+        <label>
+          Month
+          <input type="month" id="filter-month">
+        </label>
+        <label>
+          Category
+          <select id="filter-category">
+            <option value="">All</option>
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Salary</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <button id="clear-filters">Clear Filters</button>
+      </div>
+
+      <div class="card">
+        <h2>Add Transaction</h2>
+        <form id="tx-form" autocomplete="off">
+          <input type="date" id="tx-date" required />
+          <input type="text" id="tx-note" placeholder="Note (e.g., Bus fare, Lunch, Salary)" required />
+          <select id="tx-type" required>
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+          <select id="tx-category" required>
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Salary</option>
+            <option>Other</option>
+          </select>
+          <input type="number" id="tx-amount" placeholder="Amount" min="0" step="0.01" required />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Recent Transactions</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Type</th><th>Category</th><th>Note</th><th class="num">Amount</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="tx-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSACTIONS (full list) -->
+    <section id="view-transactions" class="view">
+      <div class="card">
+        <h2>All Transactions</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Type</th><th>Category</th><th>Note</th><th class="num">Amount</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="tx-tbody-all"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPORT / EXPORT -->
+    <section id="view-importexport" class="view">
+      <div class="card">
+        <h2>Export / Import</h2>
+        <div class="row">
+          <button id="btn-export">Download CSV</button>
+        </div>
+        <div class="row">
+          <input type="file" id="file-input" accept=".csv" />
+          <button id="btn-import">Import CSV</button>
+        </div>
+        <p class="hint">CSV columns: date(YYYY-MM-DD),type(income|expense),category,note,amount</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="view-about" class="view">
+      <div class="card">
+        <h2>About</h2>
+        <p>FinExpress is a simple, private, client‑side money tracker. Your data is stored only in your browser (localStorage). No cloud, no server.</p>
+        <ul>
+          <li><strong>Tip:</strong> Export CSV regularly for backup.</li>
+          <li><strong>Privacy:</strong> Don’t store bank passwords or account numbers.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> FinExpress</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
